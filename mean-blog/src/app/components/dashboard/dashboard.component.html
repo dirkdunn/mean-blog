@@ -1,0 +1,11 @@
+
+<h2>Dashboard</h2>
+<form (submit)="addPost(title,body)">
+  <div>
+    <input type="text" placeholder="Blog Title" #title>
+  </div>
+  <div>
+    <textarea placeholder="Blog post here.." name="name" rows="8" cols="80" #body></textarea>
+  </div>
+  <input type="submit" value="Submit">
+</form>
