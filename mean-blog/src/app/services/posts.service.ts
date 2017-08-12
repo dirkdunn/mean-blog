@@ -16,12 +16,25 @@ export class PostsService {
     .map(response => response.json());
   }
 
-  addPost(title,body){
+  addPost(title,body,posts){
     this.http.post(this.blogPath,{
       title, body
-    }).subscribe(response =>{
-      console.log("POST FINISHED");
-      this.router.navigate(['/']);
+    }).map(response => response.json()).subscribe(response =>{
+      posts.unshift({
+        title,
+        body,
+        postid: response.postid,
+        _id: response._id
+      });
+    });
+  }
+
+  deletePost(postid,target){
+    console.log('TARGET ',target);
+    this.http.delete(`${this.blogPath}/${postid}`).subscribe(response => {
+      console.log("DELETE FINISHED: ",response);
+      target.style.display = 'none';
+      // this.router.navigate(['/dash']);
     })
   }
 

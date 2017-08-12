@@ -31,7 +31,9 @@ router.post('/',(req,res)=>{
 var postid;
 
 Post.find((err,posts)=>{
-  postid = posts.length+1;
+  console.log("POSTS: ",posts);
+  postid = posts.length ? posts[posts.length-1].postid +1 : 1;
+
 
   var newPost = new Post({
     title: req.body.title,
@@ -62,7 +64,25 @@ router.patch('/:id',(req,res)=>{
 
 // delete a post
 router.delete('/:id',(req,res)=>{
+  console.log("ID IS: ",req.params.id)
+  // Post.find({},(err,posts)=>{
+  //   if(err){
+  //     // console.log("ERROR: ",err);
+  //     res.send(err)}
+  //   else {
+  //
+  //   }
+  // });
 
+  Post.findByIdAndRemove(req.params.id, (err,deletedPost)=>{
+    console.log(deletedPost)
+    if(err){
+      // console.log("ERROR: ",err);
+      res.send(err)}
+    else {
+      res.json(deletedPost);
+    }
+  })
 })
 
 

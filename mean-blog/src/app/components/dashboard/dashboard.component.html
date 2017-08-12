@@ -1,6 +1,6 @@
 
 <h2>Dashboard</h2>
-<form (submit)="addPost(title,body,e)">
+<form (submit)="addPost(title,body,$event)">
   <div>
     <input type="text" placeholder="Blog Title" #title>
   </div>
@@ -9,3 +9,11 @@
   </div>
   <input type="submit" value="Submit">
 </form>
+
+<div class="posts-container">
+  <div *ngFor="let post of posts;" #container>
+    <h5>{{post.title}}</h5>
+    <span>{{post.body}}</span>
+    <button class="delete-post" (click)="deletePost(post._id,container)">Delete</button>
+  </div>
+</div>
