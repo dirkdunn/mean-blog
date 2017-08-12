@@ -14,11 +14,12 @@ var mongoose = require('mongoose');
 
 
 console.log("USERNAME IS: ", process.env.USERNAME)
-var conn_string = `mongodb://${process.env.USERNAME}:${process.env.PASSWORD}@ds157712.mlab.com:57712/dirks_mean`;
+var prod_conn_string = `mongodb://${process.env.USERNAME}:${process.env.PASSWORD}@ds157712.mlab.com:57712/dirks_mean`;
+var dev_conn_string = `mongodb://${process.env.USERNAME}:${process.env.PASSWORD}@127.0.0.1:27017/mean_blog`;
 
 var app = express();
 
-mongoose.connect(conn_string);
+mongoose.connect(dev_conn_string);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

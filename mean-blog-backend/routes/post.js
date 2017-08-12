@@ -39,10 +39,14 @@ Post.find((err,posts)=>{
     postid: postid
   });
 
+  console.log("NEWPOST: ", newPost)
+
   newPost.save((err,newPost)=>{
     if(err){
+      console.log("ERROR: ",err)
       res.send(err);
     } else {
+      console.log("SUCCESS: ", newPost)
       res.json(newPost);
     }
   });

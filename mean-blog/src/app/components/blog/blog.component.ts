@@ -14,7 +14,7 @@ export class BlogComponent implements OnInit {
   ngOnInit() {
     this.postService.getPosts().subscribe(posts => {
       console.log('POSTS: ' , posts)
-      this.posts = posts;
+      this.posts = posts.reverse();
     })
   }
 

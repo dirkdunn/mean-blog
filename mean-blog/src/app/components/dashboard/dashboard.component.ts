@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {PostsService} from '../../services/posts.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,16 +11,15 @@ export class DashboardComponent implements OnInit {
   body:string;
 
   constructor(
-    private postService: PostsService,
-    private router: Router) { }
+    private postService: PostsService) { }
 
   ngOnInit() {
   }
 
-  addPost(postTitle,postBody){
+  addPost(postTitle,postBody,e){
+    // e.preventDefault();
     console.log('postData: ', postTitle.value,postBody.value);
     this.postService.addPost(postTitle.value,postBody.value);
-    this.router.navigate(['/']);
   }
 
 }
